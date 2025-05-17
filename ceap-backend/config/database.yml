@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: your_host
+  username: your_username
+  password: your_password
+  port: your_port
+
+development:
+  <<: *default
+  database: ceap_backend_development
+
+test:
+  <<: *default
+  database: ceap_backend_test
+
+production:
+  <<: *default
+  database: ceap_backend_production
+  username: ceap_backend
+  password: <%= ENV["CEAP_BACKEND_DATABASE_PASSWORD"] %>
