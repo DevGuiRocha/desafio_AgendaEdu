@@ -32,13 +32,13 @@ export default function Despesa() {
                     </tr>
                 </thead>
                 <tbody>
-                    {setDespesas.map(d => (
+                    {despesa.map(d => (
                         <tr key={d.id}>
                             <td>{new Date(d.dat_emissao).toLocaleDateString()}</td>
                             <td>{d.txt_fornecedor}</td>
                             <td>R$ {d.vlr_liquido.toFixed(2)}</td>
                             <td>
-                                <a href={false.url_documento} target="_blank" rel="noopener noreferrer">
+                                <a href={d.url_documento} target="_blank" rel="noopener noreferrer">
                                     Ver Nota
                                 </a>
                             </td>
