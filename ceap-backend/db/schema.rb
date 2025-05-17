@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_17_045958) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_17_064237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,9 +56,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_17_045958) do
     t.decimal "vlr_restituicao", precision: 15, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url_documento"
     t.index ["dat_emissao"], name: "index_despesas_on_dat_emissao"
     t.index ["deputado_id"], name: "index_despesas_on_deputado_id"
     t.index ["ide_documento"], name: "index_despesas_on_ide_documento"
+    t.index ["url_documento"], name: "index_despesas_on_url_documento"
   end
 
   add_foreign_key "despesas", "deputados"
