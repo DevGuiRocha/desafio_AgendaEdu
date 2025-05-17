@@ -7,4 +7,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :deputados, only: [:index] do
+    resources :despesas, only: [:index]
+  end
+
+  post 'import/arquivo_csv', to: 'imports#create'
 end
