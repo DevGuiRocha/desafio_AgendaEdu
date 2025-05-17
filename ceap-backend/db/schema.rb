@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_17_031350) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_17_045958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_17_031350) do
     t.date "dat_emissao"
     t.integer "num_mes"
     t.integer "num_ano"
-    t.integer "num_sub_conta"
+    t.integer "num_sub_cota"
     t.string "txt_descricao"
     t.integer "num_especificacao_subcota"
     t.string "txt_descricao_especificacao"
