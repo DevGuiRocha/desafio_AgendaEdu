@@ -73,6 +73,7 @@ class ImportArquivoCsv
       despesa.num_ressarcimento = row["numRessarcimento"].to_f
       despesa.dat_pagamento_restituicao = row["datPagamentoRestituicao"].present? ? DateTime.parse(row["datPagamentoRestituicao"]) : nil
       despesa.vlr_restituicao = row["vlrRestituicao"].to_d
+      despesa.url_documento = row["urlDocumento"]
 
       despesa.save! if despesa.changed?
 
