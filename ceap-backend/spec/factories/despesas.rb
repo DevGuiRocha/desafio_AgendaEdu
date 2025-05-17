@@ -4,7 +4,7 @@ FactoryBot.define do
     dat_emissao { "2025-05-17" }
     num_mes { 1 }
     num_ano { 1 }
-    num_sub_conta { 1 }
+    num_sub_cota { 1 }
     txt_descricao { "MyString" }
     num_especificacao_subcota { 1 }
     txt_descricao_especificacao { "MyString" }
