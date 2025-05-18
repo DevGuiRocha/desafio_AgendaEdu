@@ -1,8 +1,8 @@
 class ImportsController < ApplicationController
   def create
-    upload_file = params.require(:file)
+    upload_file = params[:file]
 
-    unless upload_file
+    if upload_file.nil?
       return render json: { error: "Nenhum arquivo enviado" }, status: :bad_request
     end
 
