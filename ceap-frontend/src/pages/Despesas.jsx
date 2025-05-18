@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from '../services/api';
+import styles from './Despesas.module.css';
 
 export default function Despesa() {
     const { id } = useParams();
@@ -15,14 +16,14 @@ export default function Despesa() {
     const maior = despesa[0]; //Conforme ordenação, primeira despesa já é a maior despesa de cada deputado
 
     return (
-        <div>
-            <h2>Despesas do Deputado #{id}</h2>
+        <div className={styles.container}>
+            <h2 className={styles.title}>Despesas do Deputado #{id}</h2>
             {maior && (
                 <p><strong>Maior Despesa:</strong>
                     {` ${maior.txt_fornecedor} - R$ ${maior.vlr_liquido.toFixed(2)}`}
                 </p>
             )}
-            <table>
+            <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>Data</th>

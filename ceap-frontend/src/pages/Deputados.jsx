@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from '../services/api';
 import { Link } from 'react-router-dom';
+import styles from './Deputados.module.css';
 
 export default function Deputados() {
     const [deputados, setDeputados] = useState([]);
@@ -12,9 +13,9 @@ export default function Deputados() {
     }, []);
 
     return (
-        <div>
-            <h2>Lista de Deputados (CE)</h2>
-            <table>
+        <div className={styles.container}>
+            <h2 className={styles.title}>Lista de Deputados (CE)</h2>
+            <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>Foto Deputado</th>
