@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
+import styles from './NavBar.module.css';
+import logoImg from '../assets/logo.png';
 
 export default function Navbar() {
     return(
-        <nav style={{ padding: '1rem', borderBotton: '1px solid #ddd' }}>
-            <Link to="/" stryle={{ marginRight: 16 }}>Home</Link>
-            <Link to="/deputados" stryle={{ marginRight: 16 }}>Deputados</Link>
-            <Link to="/uploadcsv" stryle={{ marginRight: 16 }}>Importar CSV</Link>
+        <nav className={styles.nav}>
+            <div className={styles.brand}>
+                <img src={logoImg} alt="Logo" className={styles.logo} />
+                <span className={styles.title}>Desafio Programação</span>
+            </div>
+            <div className={styles.links}>
+                <Link to="/" className={styles.link}>Home</Link>
+                <Link to="/deputados" className={styles.link}>Consultar Deputados</Link>
+                <Link to="/uploadcsv" className={styles.link}>Importar CSV</Link>
+            </div>
         </nav>
     );
 }
