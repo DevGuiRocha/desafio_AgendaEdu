@@ -3,6 +3,11 @@ import api from '../services/api';
 import { Link } from 'react-router-dom';
 import styles from './Deputados.module.css';
 
+const currency = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+});
+
 export default function Deputados() {
     const [deputados, setDeputados] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,37 +26,40 @@ export default function Deputados() {
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Lista de Deputados (CE)</h2>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th>Foto</th>
-                        <th>Nome Deputado</th>
-                        <th>Partido</th>
-                        <th>Maior Despesa</th>
-                        <th>Total gasto</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {paged.map(d => (
-                        <tr key={d.id}>
-                            <td>
-                                <img src={`http://www.camara.leg.br/internet/deputado/bandep/${d.ide_cadastro}.jpg`} 
-                                    style={{ width: 50, height: 50, objectFit: 'cover', borderRadius: '50%' }} />
-                            </td>
-                            <td>{d.nome_parlamentar}</td>
-                            <td>{d.sg_partido}</td>
-                            <td>R$ {d.maior_despesa.toFixed(2)}</td>
-                            <td>R$ {d.total_gastos.toFixed(2)}</td>
-                            <td>
-                                <Link to={`/deputados/${d.id}/despesas`}>
-                                    Verificar Gastos
-                                </Link>
-                            </td>
+            <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nome Deputado</th>
+                            <th>Partido</th>
+                            <th>Maior Despesa</th>
+                            <th>Total gasto</th>
+                            <th>Ações</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {paged.map(d => (
+                            <tr key={d.id}>
+                                <td>
+                                    <img src={`http://www.camara.leg.br/internet/deputado/bandep/${d.ide_cadastro}.jpg`} 
+                                        alt={`Foto de ${d.nome_parlamentar}`} 
+                                        className={styles.avatar} />
+                                </td>
+                                <td>{d.nome_parlamentar}</td>
+                                <td>{d.sg_partido}</td>
+                                <td>{currency.format(d.maior_despesa)}</td>
+                                <td>{currency.format(d.total_gastos)}</td>
+                                <td>
+                                    <Link to={`/deputados/${d.id}/despesas`} className={styles.detailButton}>
+                                        Verificar Gastos
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
             <div className={styles.pagination}>
                 <button
