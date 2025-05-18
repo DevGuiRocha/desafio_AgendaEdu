@@ -1,4 +1,9 @@
 .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -6,6 +11,7 @@
     background-color: #242424;
     border-bottom: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    z-index: 800;
 }
 
 .brand {
