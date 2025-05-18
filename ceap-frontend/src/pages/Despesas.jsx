@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from '../services/api';
 import styles from './Despesas.module.css';
 
 export default function Despesa() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [despesas, setDespesas] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 10;
@@ -89,6 +90,21 @@ export default function Despesa() {
                     className={styles.button}
                 >
                     Última
+                </button>
+            </div>
+
+            <div className={styles.navigation}>
+                <button
+                    className={styles.homeButton}
+                    onClick={() => navigate("/")}
+                >
+                    Home
+                </button>
+                <button
+                    className={styles.backButton}
+                    onClick={() => navigate(-1)}
+                >
+                    Voltar
                 </button>
             </div>
         </div>
