@@ -54,42 +54,42 @@ export default function Deputados() {
             </table>
 
             <div className={styles.pagination}>
-                            <button
-                                onClick={() => setCurrentPage(1)}
-                                disabled={currentPage === 1}
-                                className={styles.button}
-                            >
-                                Primeira
-                            </button>
-            
-                            <button
-                                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                                disabled={currentPage === 1}
-                                className={styles.button}
-                            >
-                                Anterior
-                            </button>
-            
-                            <span>
-                                Página {currentPage} de {totalPages}
-                            </span>
-            
-                            <button
-                                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                                disabled={currentPage === totalPages}
-                                className={styles.button}
-                            >
-                                Próxima
-                            </button>
-            
-                            <button
-                                onClick={() => setCurrentPage(totalPages)}
-                                disabled={currentPage === totalPages}
-                                className={styles.button}
-                            >
-                                Última
-                            </button>
-                        </div>
+                <button
+                    onClick={() => setCurrentPage(1)}
+                    disabled={currentPage === 1}
+                    className={styles.button}
+                >
+                    Primeira
+                </button>
+
+                <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className={styles.button}
+                >
+                    Anterior
+                </button>
+
+                <span>
+                    Página {currentPage} de {totalPages}
+                </span>
+
+                <button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                    className={styles.button}
+                >
+                    Próxima
+                </button>
+
+                <button
+                    onClick={() => setCurrentPage(totalPages)}
+                    disabled={currentPage === totalPages}
+                    className={styles.button}
+                >
+                    Última
+                </button>
+            </div>
         </div>
     );
 }
