@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Deputados from './pages/Deputados';
 import Despesas from './pages/Despesas';
@@ -20,6 +21,7 @@ export default function App() {
           </Routes>
         </main>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

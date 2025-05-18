@@ -1,0 +1,28 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #242424;
+    color: #fff;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    z-index: 800;
+}
+
+.top {
+    margin-bottom: 0.25rem;
+}
+
+.bottom, .link {
+    color: #646cff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.bottom .link:hover {
+    text-decoration: underline;
+}
