@@ -11,6 +11,6 @@ class ImportsController < ApplicationController
 
     ImportArquivoCsv.call(temp_path.to_s)
 
-    render json: { message: 'Importação iniciada' }, status: :accepted
+    render json: { message: 'Upload realizado com sucesso! Importação iniciada automaticamente.' }, status: :accepted
   end
 end
