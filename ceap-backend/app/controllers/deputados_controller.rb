@@ -3,7 +3,8 @@ class DeputadosController < ApplicationController
     deputados = Deputado.where(sg_uf: 'CE')
                         .left_joins(:despesas)
                         .select(
-                          'deputados.*, COALESCE(SUM(despesas.vlr_liquido), 0) AS total_despesas, MAX(despesas.vlr_liquido) AS maior_despesa'
+                          'deputados.*, COALESCE(SUM(despesas.vlr_liquido), 0) AS total_despesas, MAX(despesas.vlr_liquido) AS maior_despesa,
+                          COUNT(despesas.id) AS qtde_despesa'
                         )
                         .group("deputados.id")
                         .order("total_despesas DESC")
@@ -16,7 +17,8 @@ class DeputadosController < ApplicationController
         sg_uf: d.sg_uf,
         sg_partido: d.sg_partido,
         maior_despesa: d.maior_despesa.to_f,
-        total_gastos: d.total_despesas.to_f
+        total_gastos: d.total_despesas.to_f,
+        qtde_despesa: d.qtde_despesa
       }
     }
   end
