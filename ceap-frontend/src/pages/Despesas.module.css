@@ -85,3 +85,39 @@
 .backButton {
     background-color: #9c1111;
 }
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.avatarLarge {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardName {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+.cardLine {
+    margin: 0.25rem 0;
+    font-size: 1rem;
+}

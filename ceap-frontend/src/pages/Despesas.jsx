@@ -31,11 +31,23 @@ export default function Despesa() {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Despesas do Deputado #{id}</h2>
             {maior && (
-                <p><strong>Maior Despesa:</strong>
-                    {` ${maior.txt_fornecedor} - ${currency.format(maior.vlr_liquido)}`}
-                </p>
+                <div className={styles.card}>
+                    <img 
+                        src={`http://www.camara.leg.br/internet/deputado/bandep/${maior.ide_cadastro}.jpg`}
+                        alt={`Foto de ${maior.nome_parlamentar}`}
+                        className={styles.avatarLarge}
+                    />
+                    <div className={styles.cardInfo}>
+                        <h3 className={styles.cardName}>{maior.nome_parlamentar}</h3>
+                        <p className={styles.cardLine}>
+                            <strong>Maior Despesa:</strong> {currency.format(maior.vlr_liquido)}
+                        </p>
+                        <p className={styles.cardLine}>
+                            <strong>Quantidade de despesas:</strong> {despesas.length}
+                        </p>
+                    </div>
+                </div>
             )}
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>
