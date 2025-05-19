@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import styles from './UploadCsv.module.css';
 
 export default function UploadCsv() {
+    useLayoutEffect(() => window.scrollTo(0, 0));
+    
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
     const [uploading, setUploading] = useState(false);

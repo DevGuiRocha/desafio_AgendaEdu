@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from '../services/api';
 import styles from './Despesas.module.css';
@@ -9,6 +9,8 @@ const currency = new Intl.NumberFormat('pt-BR', {
 });
 
 export default function Despesa() {
+    useLayoutEffect(() => window.scrollTo(0, 0));
+    
     const { id } = useParams();
     const navigate = useNavigate();
     const [despesas, setDespesas] = useState([]);

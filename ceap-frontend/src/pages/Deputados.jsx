@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import api from '../services/api';
 import { Link } from 'react-router-dom';
 import styles from './Deputados.module.css';
@@ -9,6 +9,8 @@ const currency = new Intl.NumberFormat('pt-BR', {
 });
 
 export default function Deputados() {
+    useLayoutEffect(() => window.scrollTo(0, 0));
+
     const [deputados, setDeputados] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 10;
