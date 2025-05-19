@@ -1,4 +1,4 @@
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState, useLayoutEffect, useMemo } from "react";
 import api from '../services/api';
 import { Link } from 'react-router-dom';
 import styles from './Deputados.module.css';
@@ -12,6 +12,8 @@ export default function Deputados() {
     useLayoutEffect(() => window.scrollTo(0, 0));
 
     const [deputados, setDeputados] = useState([]);
+    const [filtroNome, setFiltroNome] = useState("");
+    const [filtroPartido, setFiltroPartido] = useState("Todos");
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 10;
 
@@ -21,13 +23,67 @@ export default function Deputados() {
             .catch(console.error);
     }, []);
 
-    const totalPages = Math.ceil(deputados.length / pageSize);
+    const partidos = useMemo(() => {
+        const setP = new Set(deputados.map(d => d.sg_partido));
+        return ["Todos", ...Array.from(setP).sort()];
+    }, [deputados]);
+
+    const deputadosFiltrados = useMemo(() => {
+        return deputados.filter(d => {
+            const matchNomes = d.nome_parlamentar
+                                .toLowerCase()
+                                .includes(filtroNome.toLocaleLowerCase());
+            const matchPartidos = filtroPartido === "Todos"
+                ? true
+                : d.sg_partido === filtroPartido;
+            return matchNomes && matchPartidos
+        });
+    }, [deputados, filtroNome, filtroPartido]);
+
+    const totalPages = Math.max(1, Math.ceil(deputadosFiltrados.length / pageSize));
     const start = (currentPage - 1) * pageSize;
-    const paged = deputados.slice(start, start + pageSize);
+    const paged = deputadosFiltrados.slice(start, start + pageSize);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filtroNome, filtroPartido]);
 
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Lista de Deputados (CE)</h2>
+
+            <div className={styles.filters}>
+                <input
+                    type="text"
+                    placeholder="Busca por nome..."
+                    value={filtroNome}
+                    onChange={e => setFiltroNome(e.target.value)}
+                    className={styles.filterInput}
+                />
+
+                <select
+                    value={filtroPartido}
+                    onChange={e => setFiltroPartido(e.target.value)}
+                    className={styles.filterSelect}
+                >
+                    {partidos.map(p => (
+                        <option key={p} value={p}>{p}</option>
+                    ))}
+                </select>
+
+                <button
+                    type="button"
+                    className={styles.filterClear}
+                    onClick={() => {
+                        setFiltroNome("");
+                        setFiltroPartido("Todos");
+                    }}
+                    disabled={!filtroNome && filtroPartido === "Todos"}
+                >
+                    Limpar Filtros
+                </button>
+            </div>
+
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>
                     <thead>
@@ -59,6 +115,13 @@ export default function Deputados() {
                                 </td>
                             </tr>
                         ))}
+                        {paged.length === 0 && (
+                            <tr>
+                                <td colSpan={6} style={{ textAlign: 'center', padding: '1rem' }}>
+                                    Nenhum deputado encontrado
+                                </td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>
