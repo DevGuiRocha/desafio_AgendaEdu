@@ -10,12 +10,12 @@ const currency = new Intl.NumberFormat('pt-BR', {
 
 export default function Despesa() {
     useLayoutEffect(() => window.scrollTo(0, 0));
-    
+
     const { id } = useParams();
     const navigate = useNavigate();
     const [despesas, setDespesas] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 10;
+    const [pageSize, setPageSize] = useState(10);
 
     useEffect(() => {
         api.get(`/deputados/${id}/despesas`)
@@ -28,6 +28,10 @@ export default function Despesa() {
     const totalPages = Math.ceil(despesas.length / pageSize);
     const start = (currentPage - 1) * pageSize;
     const paged = despesas.slice(start, start + pageSize);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [pageSize]);
 
     return (
         <div className={styles.container}>
@@ -49,6 +53,20 @@ export default function Despesa() {
                     </div>
                 </div>
             )}
+
+            <div className={styles.pageSizeSet}>
+                <label htmlFor="pageSize">Linhas Por página:</label>
+                <select
+                    id="pageSize"
+                    value={pageSize}
+                    onChange={e => setPageSize(Number(e.target.value))}
+                >
+                    {[10, 20, 30, 40, 50].map(n => (
+                        <option key={n} value={n}>{n}</option>
+                    ))}
+                </select>
+            </div>
+
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>
                     <thead>
