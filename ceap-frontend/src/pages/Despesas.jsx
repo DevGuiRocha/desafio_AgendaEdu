@@ -3,6 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from '../services/api';
 import styles from './Despesas.module.css';
 
+const currency = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+});
+
 export default function Despesa() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -27,33 +32,42 @@ export default function Despesa() {
             <h2 className={styles.title}>Despesas do Deputado #{id}</h2>
             {maior && (
                 <p><strong>Maior Despesa:</strong>
-                    {` ${maior.txt_fornecedor} - R$ ${maior.vlr_liquido.toFixed(2)}`}
+                    {` ${maior.txt_fornecedor} - ${currency.format(maior.vlr_liquido)}`}
                 </p>
             )}
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Fornecedor</th>
-                        <th>Valor</th>
-                        <th>Nota</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {paged.map(d => (
-                        <tr key={d.id}>
-                            <td>{new Date(d.dat_emissao).toLocaleDateString()}</td>
-                            <td>{d.txt_fornecedor}</td>
-                            <td>R$ {d.vlr_liquido.toFixed(2)}</td>
-                            <td>
-                                <a href={d.url_documento} target="_blank" rel="noopener noreferrer">
-                                    Ver Nota
-                                </a>
-                            </td>
+            <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Fornecedor</th>
+                            <th>Valor</th>
+                            <th>Nota</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {paged.map(d => (
+                            <tr key={d.id}>
+                                <td>{new Date(d.dat_emissao).toLocaleDateString()}</td>
+                                <td>{d.txt_fornecedor}</td>
+                                <td>{currency.format(d.vlr_liquido)}</td>
+                                <td>
+                                    {d.url_documento ? (
+                                        <a href={d.url_documento} className={styles.detailButton} target="_blank" rel="noopener noreferrer">
+                                            Ver Nota
+                                        </a>
+                                    ) : (
+                                        <button className={styles.noNote} disabled>
+                                            Sem Nota Fiscal
+                                        </button>
+                                    )
+                                    }
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
             <div className={styles.pagination}>
                 <button

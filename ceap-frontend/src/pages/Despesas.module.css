@@ -1,18 +1,29 @@
 .container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem 0;
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .title {
     margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.70rem;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
+}
+
+.table thead {
+    background-color: #333;
+    color: #fff;
 }
 
 .table th,
@@ -24,6 +35,30 @@
 
 .table th {
     font-weight: 600;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+.detailButton {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background-color: #C8A2FF;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.noNote {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background-color: #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: not-allowed;
 }
 
 .pagination, .navigation {
