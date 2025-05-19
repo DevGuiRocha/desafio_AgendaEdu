@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLayoutEffect, useEffect, useState } from 'react';
 import api from '../services/api';
 import styles from './Home.module.css';
