@@ -1,0 +1,92 @@
+.container {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.intro p {
+    font-size: 1.125rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.primaryButton, .secondaryButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.primaryButton {
+    background-color: #7F42D9;
+    color: #fff;
+}
+.primaryButton:hover {
+    background-color: #0069d9;
+}
+
+.secondaryButton {
+    background-color: #C8A2FF;
+    color: #fff;
+}
+.secondaryButton:hover {
+    background-color: #218838;
+}
+
+.summaryTitle {
+    margin-top: 2rem;
+    font-size: 1.75rem;
+    color: #333;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    flex: 1 1 220px;
+    max-width: 260px;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.125rem;
+    color: #444;
+    text-align: center;
+}
+
+.cardValue {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+}
