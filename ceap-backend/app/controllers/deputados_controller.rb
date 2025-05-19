@@ -6,6 +6,7 @@ class DeputadosController < ApplicationController
                           'deputados.*, COALESCE(SUM(despesas.vlr_liquido), 0) AS total_despesas, MAX(despesas.vlr_liquido) AS maior_despesa'
                         )
                         .group("deputados.id")
+                        .order("total_despesas DESC")
 
     render json: deputados.map { |d| 
       {
