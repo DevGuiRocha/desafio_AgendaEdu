@@ -8,6 +8,8 @@ class DespesasController < ApplicationController
     render json: despesas.map { |d|
       {
         id: d.id,
+        nome_parlamentar: deputado.nome_parlamentar,
+        ide_cadastro: deputado.ide_cadastro,
         dat_emissao: d.dat_emissao,
         txt_fornecedor: d.txt_fornecedor,
         vlr_liquido: d.vlr_liquido.to_f,
