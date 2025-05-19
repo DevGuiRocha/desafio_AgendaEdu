@@ -20,7 +20,7 @@ Como dito inicialmente, esta API conta com 3 endpoints, sendo 2 GET e um POST. A
 
 #### Retorna todos os deputados 
 
-```http
+```bash
     GET /deputados
 ```
 
@@ -47,7 +47,7 @@ Para este Endpoint, não é necessário nenhum Parâmetro, portanto apenas execu
 
 #### Retorna todas as despesas de um determinado deputado
 
-```http
+```bash
     GET /deputados/${id}/despesas
 ```
 
@@ -74,7 +74,7 @@ Ao ser executado com sucesso, é retornado um arquivo JSON, seguindo o formato a
 
 #### Envia arquivo para processamento de informações
 
-```http
+```bash
     POST import/arquivo_csv
 ```
 
