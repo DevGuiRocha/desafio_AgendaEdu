@@ -41,30 +41,52 @@ export default function UploadCsv() {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Importar CSV das despesas políticas</h2>
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <input 
-                    ref={fileInputRef}
-                    className={styles.input}
-                    type="file"
-                    accept=".csv"
-                    onChange={e => setFile(e.target.files[0])}
-                    disabled={uploading}
-                />
-                <button type="submit" className={styles.button} disabled={uploading || !file}>
-                    {uploading ? 'Enviando Arquivo...' : 'Enviar CSV'}
-                </button>
-            </form>
-            {message && (
-                <p className={styles.message}>
-                    {message}
-                    <br/>
-                    {message.includes("sucesso")
-                    ? "Você será redirecionado a tela inicial em 3 segundos..."
-                    : ""
-                    }
-                </p>
-            )}
+            <div className={styles.card}>
+                <h2 className={styles.title}>Importar CSV das despesas políticas</h2>
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <label htmlFor="file" className={styles.fileLabel}>
+                        Selecione um arquivo CSV:
+                    </label>
+
+                    <div className={styles.controls}>
+                        <input 
+                            id="file"
+                            ref={fileInputRef}
+                            type="file"
+                            accept=".csv"
+                            className={styles.input}
+                            onChange={e => setFile(e.target.files[0])}
+                            disabled={uploading}
+                        />
+
+                        <button
+                            type="submit"
+                            className={styles.primaryButton}
+                            disabled={uploading || !file}
+                        >
+                            {uploading ? 'Enviando...' : 'Importar CSV'}
+                        </button>
+
+                        <button
+                            type="button"
+                            className={styles.secondaryButton}
+                            onClick={() => navigate('/')}
+                            disabled={uploading}
+                        >
+                            Home
+                        </button>
+                    </div>
+                </form>
+
+                {message && (
+                    <p className={styles.message}>
+                        {message}
+                        {message.toLowerCase().includes('sucesso') && (
+                            <><br/>Você será redirecionado em 3 segundos...</>
+                        )}
+                    </p>
+                )}
+            </div>
         </div>
     );
 }
