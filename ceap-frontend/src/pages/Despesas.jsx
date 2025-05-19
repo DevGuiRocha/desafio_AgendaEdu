@@ -48,7 +48,10 @@ export default function Despesa() {
                             <strong>Maior Despesa:</strong> {currency.format(maior.vlr_liquido)}
                         </p>
                         <p className={styles.cardLine}>
-                            <strong>Quantidade de despesas:</strong> {despesas.length}
+                            <strong>Fornecedor:</strong> {maior.txt_fornecedor}
+                        </p>
+                        <p className={styles.cardLine}>
+                            <strong>Quantidade total de despesas:</strong> {despesas.length}
                         </p>
                     </div>
                 </div>
