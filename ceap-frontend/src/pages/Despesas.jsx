@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, useLayoutEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import getDespesas from '../services/despesa';
+import { getDespesas } from '../services/despesa';
 import styles from './Despesas.module.css';
 import currency from '../utils/currency';
 
