@@ -1,8 +1,9 @@
 import React from 'react';
 import { useLayoutEffect, useEffect, useState } from 'react';
-import api from '../services/api';
+import { getDeputados } from '../services/deputado';
 import styles from './Home.module.css';
 import currency from '../utils/currency';
+import { useSummary } from '../hooks/useSummary';
 
 export default function Home() {
     useLayoutEffect(() => window.scrollTo(0, 0));
@@ -10,14 +11,12 @@ export default function Home() {
     const [deputados, setDeputados] = useState([]);
 
     useEffect(() => {
-        api.get('/deputados')
-            .then(res => setDeputados(res.data))
+        getDeputados('CE')
+            .then(data => setDeputados(data))
             .catch(console.error);
     }, []);
 
-    const totalDeputados = deputados.length;
-    const totalDespesas = deputados.reduce((sum, d) => sum + d.qtde_despesa, 0)
-    const totalGastos = deputados.reduce((sum, d) => sum + (d.total_gastos || 0), 0);
+    const { totalDeputados, totalDespesas, totalGastos } = useSummary(deputados);
 
     return (
         <div className={styles.container}>
