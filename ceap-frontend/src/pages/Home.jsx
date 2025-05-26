@@ -2,11 +2,7 @@ import React from 'react';
 import { useLayoutEffect, useEffect, useState } from 'react';
 import api from '../services/api';
 import styles from './Home.module.css';
-
-const currency = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-});
+import currency from '../utils/currency';
 
 export default function Home() {
     useLayoutEffect(() => window.scrollTo(0, 0));

@@ -3,11 +3,7 @@ import { useEffect, useState, useLayoutEffect, useMemo } from "react";
 import api from '../services/api';
 import { Link } from 'react-router-dom';
 import styles from './Deputados.module.css';
-
-const currency = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-});
+import currency from '../utils/currency';
 
 export default function Deputados() {
     useLayoutEffect(() => window.scrollTo(0, 0));
