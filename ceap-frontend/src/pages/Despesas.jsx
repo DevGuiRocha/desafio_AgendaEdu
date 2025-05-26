@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, useLayoutEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import api from '../services/api';
+import getDespesas from '../services/despesa';
 import styles from './Despesas.module.css';
 import currency from '../utils/currency';
 
@@ -15,8 +15,8 @@ export default function Despesa() {
     const [pageSize, setPageSize] = useState(10);
 
     useEffect(() => {
-        api.get(`/deputados/${id}/despesas`)
-            .then(res => setDespesas(res.data))
+        getDespesas(id)
+            .then(data => setDespesas(data))
             .catch(console.error);
     }, [id]);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState, useLayoutEffect, useMemo } from "react";
-import api from '../services/api';
+import { getDeputados } from '../services/deputado';
 import { Link } from 'react-router-dom';
 import styles from './Deputados.module.css';
 import currency from '../utils/currency';
@@ -15,8 +15,8 @@ export default function Deputados() {
     const pageSize = 10;
 
     useEffect(() => {
-        api.get('/deputados')
-            .then(res => setDeputados(res.data))
+        getDeputados('CE')
+            .then(data => setDeputados(data))
             .catch(console.error);
     }, []);
 
