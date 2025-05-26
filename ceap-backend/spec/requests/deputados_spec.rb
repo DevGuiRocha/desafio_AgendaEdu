@@ -13,9 +13,9 @@ RSpec.describe "GET /deputados", type: :request do
 
   context "Quando existem deputados com diferentes estados" do
     before do
-      create(:deputado, sg_uf: "SP", ide_cadastro: 1, nome_parlamentar: "Deputado 01")
-      create(:deputado, sg_uf: "CE", ide_cadastro: 2, nome_parlamentar: "Deputado 02")
-      create(:deputado, sg_uf: "AM", ide_cadastro: 3, nome_parlamentar: "Deputado 03")
+      create(:deputado, sg_uf: "SP", ide_cadastro: 1, nome_parlamentar: "Deputado 01", cpf: "12345678900")
+      create(:deputado, sg_uf: "CE", ide_cadastro: 2, nome_parlamentar: "Deputado 02", cpf: "45678912300")
+      create(:deputado, sg_uf: "AM", ide_cadastro: 3, nome_parlamentar: "Deputado 03", cpf: "78912345600")
     end
 
     it "Retorna apenas deputados do Estado do Ceará (sg_uf = CE)" do
@@ -59,8 +59,8 @@ RSpec.describe "GET /deputados", type: :request do
   end
 
   context "Diversos deputados com e sem despesas" do
-    let!(:dep1) { create(:deputado, sg_uf: "CE", ide_cadastro: 30, nome_parlamentar: "Deputado XYZ") }
-    let!(:dep2) { create(:deputado, sg_uf: "CE", ide_cadastro: 35, nome_parlamentar: "Deputado ABC") }
+    let!(:dep1) { create(:deputado, sg_uf: "CE", ide_cadastro: 30, nome_parlamentar: "Deputado XYZ", cpf: "12345678900") }
+    let!(:dep2) { create(:deputado, sg_uf: "CE", ide_cadastro: 35, nome_parlamentar: "Deputado ABC", cpf: "98765432100") }
 
     before do
       create(:despesa, deputado: dep1, vlr_liquido: 10.00)

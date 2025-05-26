@@ -37,7 +37,7 @@ RSpec.describe "Imports", type: :request do
       # Resposta HTTP e JSON
       expect(response).to have_http_status(:accepted)
       expect(JSON.parse(response.body)).to eq(
-        "message" => "Importação iniciada"
+        "message" => "Upload realizado com sucesso! Importação iniciada automaticamente."
       )
     ensure
       temp.close

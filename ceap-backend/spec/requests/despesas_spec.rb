@@ -30,14 +30,14 @@ RSpec.describe "Despesas", type: :request do
 
       body = JSON.parse(response.body)
       valores = body.map { |d| d['vlr_liquido'] }
-      expect(valores).to eq([200.0, 150.0, 100.0])
+      expect(valores).to eq(["200.0", "150.0", "100.0"])
 
       flags = body.map { |d| d['is_maior_despesa'] }
       expect(flags).to eq([true, false, false])
 
       item = body.first
       expect(item.keys).to contain_exactly(
-        'id', 'dat_emissao', 'txt_fornecedor', 'vlr_liquido', 'url_documento', 'is_maior_despesa'
+        'id', 'deputado_id', 'dat_emissao', 'txt_fornecedor', 'vlr_liquido', 'url_documento', 'is_maior_despesa', 'ide_cadastro', 'nome_parlamentar'
       )
       expect(item['id']).to eq(d2.id)
       expect(item['txt_fornecedor']).to eq('Fornecedor B')
