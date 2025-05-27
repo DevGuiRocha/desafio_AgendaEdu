@@ -4,7 +4,7 @@ import { getDeputados } from '../services/deputado';
 import { Link } from 'react-router-dom';
 import styles from './Deputados.module.css';
 import currency from '../utils/currency';
-import { filterPartidos } from '../hooks/filterPartidos';
+import { useFetchPartidos } from '../hooks/useFetchPartidos';
 
 export default function Deputados() {
     useLayoutEffect(() => window.scrollTo(0, 0));
@@ -21,7 +21,7 @@ export default function Deputados() {
             .catch(console.error);
     }, []);
 
-    const partidos = filterPartidos(deputados);
+    const partidos = useFetchPartidos(deputados);
 
     const deputadosFiltrados = useMemo(() => {
         return deputados.filter(d => {
