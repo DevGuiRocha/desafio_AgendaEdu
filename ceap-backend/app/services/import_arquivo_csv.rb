@@ -25,7 +25,7 @@ class ImportArquivoCsv
     csv_options = { headers: true, col_sep: ";", encoding: "bom|utf-8" }
 
     CSV.foreach(@file_path, **csv_options) do |row|
-      next unless row['sgUF'] == 'CE' && row["datEmissao"].present? && row["vlrLiquido"].to_d >= 0
+      next unless row['sgUF'] == 'CE'
 
       ide = row['ideCadastro'].to_i
       dep_id = deputados_cache[ide] || begin
@@ -51,6 +51,8 @@ class ImportArquivoCsv
       desp_id = despesas_cache[key]
 
       despesa = desp_id ? Despesa.find(desp_id) : Despesa.new(deputado_id: dep_id, ide_documento: key.last)
+
+      next unless row["datEmissao"].present? && row["vlrLiquido"].to_d >= 0
 
       desp_attrs = {
         dat_emissao: Date.parse(row["datEmissao"]),
