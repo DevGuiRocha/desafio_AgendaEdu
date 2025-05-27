@@ -32,12 +32,9 @@ RSpec.describe "Despesas", type: :request do
       valores = body.map { |d| d['vlr_liquido'] }
       expect(valores).to eq(["200.0", "150.0", "100.0"])
 
-      flags = body.map { |d| d['is_maior_despesa'] }
-      expect(flags).to eq([true, false, false])
-
       item = body.first
       expect(item.keys).to contain_exactly(
-        'id', 'deputado_id', 'dat_emissao', 'txt_fornecedor', 'vlr_liquido', 'url_documento', 'is_maior_despesa', 'ide_cadastro', 'nome_parlamentar'
+        'id', 'deputado_id', 'dat_emissao', 'txt_fornecedor', 'vlr_liquido', 'url_documento', 'ide_cadastro', 'nome_parlamentar'
       )
       expect(item['id']).to eq(d2.id)
       expect(item['txt_fornecedor']).to eq('Fornecedor B')

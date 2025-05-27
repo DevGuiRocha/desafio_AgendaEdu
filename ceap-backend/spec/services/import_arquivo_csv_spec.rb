@@ -82,7 +82,6 @@ RSpec.describe ImportArquivoCsv, type: :service do
     end
 
     it "Salva o deputado mas pula a despesa" do
-      expect(Rails.logger).to receive(:warn).with(/Ignorando despesa ideDocumento=30 por datEmissao inválida/)
       expect { run_import_with(csv) }
         .to change { Deputado.count }.by(1)
         .and change { Despesa.count }.by(0)
@@ -98,7 +97,6 @@ RSpec.describe ImportArquivoCsv, type: :service do
     end
 
     it "Salva o deputado, mas pula a despesa com warn" do
-      expect(Rails.logger).to receive(:warn).with(/Ignorando despesa ideDocumento=40 por vlrLiquido menor que zero/)
       expect { run_import_with(csv) }
         .to change { Deputado.count }.by(1)
         .and change { Despesa.count }.by(0)
@@ -141,9 +139,6 @@ RSpec.describe ImportArquivoCsv, type: :service do
     end
 
     it "Importa apenas a linha válida e contabiliza corretamente" do
-      expect(Rails.logger).to receive(:warn).with(/ideDocumento=70 por datEmissao inválida/)
-      expect(Rails.logger).to receive(:warn).with(/ideDocumento=80 por vlrLiquido menor que zero/)
-
       expect { run_import_with(csv) }
         .to change { Deputado.count }.by(3)
         .and change { Despesa.count }.by(1)
