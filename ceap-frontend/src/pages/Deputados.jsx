@@ -4,6 +4,7 @@ import { getDeputados } from '../services/deputado';
 import { Link } from 'react-router-dom';
 import styles from './Deputados.module.css';
 import currency from '../utils/currency';
+import { filterPartidos } from '../hooks/filterPartidos';
 
 export default function Deputados() {
     useLayoutEffect(() => window.scrollTo(0, 0));
@@ -20,10 +21,7 @@ export default function Deputados() {
             .catch(console.error);
     }, []);
 
-    const partidos = useMemo(() => {
-        const setP = new Set(deputados.map(d => d.sg_partido));
-        return ["Todos", ...Array.from(setP).sort()];
-    }, [deputados]);
+    const partidos = filterPartidos(deputados);
 
     const deputadosFiltrados = useMemo(() => {
         return deputados.filter(d => {
