@@ -8,7 +8,7 @@ export default function Navbar() {
         <nav className={styles.nav}>
             <div className={styles.brand}>
                 <img src={logoImg} alt="Logo" className={styles.logo} />
-                <Link to="/" className={styles.title}>Despesas Públicas</Link>
+                <span className={styles.title}>Despesas Públicas</span>
             </div>
             <div className={styles.links}>
                 <Link to="/" className={styles.link}>Home</Link>
