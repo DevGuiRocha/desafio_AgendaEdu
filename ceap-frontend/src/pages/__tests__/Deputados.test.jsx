@@ -55,7 +55,7 @@ describe('Página Deputados', () => {
         </MemoryRouter>
         );
 
-        await waitFor(() => expect(api.get).toHaveBeenCalledWith('/deputados'));
+        await waitFor(() => expect(api.get).toHaveBeenCalledWith('/deputados', {"params": {"uf": "CE"}}));
 
         await waitFor(() => {
             const allRows = screen.getAllByRole('row');

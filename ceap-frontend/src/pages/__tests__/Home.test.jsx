@@ -46,7 +46,7 @@ describe('Home', () => {
         render(<Home />);
 
         // espera o efeito do useEffect terminar
-        await waitFor(() => expect(api.get).toHaveBeenCalledWith('/deputados'));
+        await waitFor(() => expect(api.get).toHaveBeenCalledWith('/deputados', {"params": {"uf": "CE"}}));
 
         // total de deputados
         expect(screen.getByText('Total de Deputados')).toBeInTheDocument();

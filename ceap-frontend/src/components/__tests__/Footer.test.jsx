@@ -18,7 +18,7 @@ describe('Footer', () => {
     it('exibe o texto de copyright com o ano atual', () => {
         const year = new Date().getFullYear();
         // usamos RegExp para escapar o ponto final
-        const regex = new RegExp(`© ${year} Sistema de colsuta de Despesas Políticas\\. Todos os direitos reservados`);
+        const regex = new RegExp(`© ${year} Sistema de consulta de Despesas Políticas\\. Todos os direitos reservados`);
         expect(screen.getByText(regex)).toBeInTheDocument();
     });
 

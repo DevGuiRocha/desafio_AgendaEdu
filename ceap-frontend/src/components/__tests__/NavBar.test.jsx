@@ -1,8 +1,9 @@
 // src/components/__tests__/NavBar.test.jsx
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import NavBar from '../NavBar';
+import styles from '../NavBar.module.css';
 
 describe('NavBar', () => {
     beforeEach(() => {
@@ -18,7 +19,7 @@ describe('NavBar', () => {
         expect(img).toBeInTheDocument();
         expect(img).toHaveAttribute('src', expect.stringContaining('logo.png'));
 
-        const title = screen.getByText(/Desafio Programação/i);
+        const title = screen.getByText(/Despesas Públicas/i);
         expect(title).toBeInTheDocument();
     });
 
@@ -33,7 +34,8 @@ describe('NavBar', () => {
     });
 
     it('aplica a classe de link corretamente para hover etc.', () => {
-        const links = screen.getAllByRole('link');
+        const linksContainer = screen.getByRole('navigation').querySelector(`.${styles.links}`);
+        const links = within(linksContainer).getAllByRole('link');
         links.forEach(link => {
             expect(link).toHaveClass('link');
         });
