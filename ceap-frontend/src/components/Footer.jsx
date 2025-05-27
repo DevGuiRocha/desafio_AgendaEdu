@@ -5,7 +5,7 @@ export default function Footer () {
     return (
         <footer className={styles.footer}>
             <div className={styles.top}>
-                <span>© {new Date().getFullYear()} Sistema de colsuta de Despesas Políticas. Todos os direitos reservados</span>
+                <span>© {new Date().getFullYear()} Sistema de consulta de Despesas Políticas. Todos os direitos reservados</span>
             </div>
 
             <div className={styles.bottom}>
