@@ -8,10 +8,4 @@ class Despesa < ApplicationRecord
   delegate :nome_parlamentar, :ide_cadastro, to: :deputado
 
   scope :order_by_value_desc, -> { order(vlr_liquido: :desc) }
-
-  def maior?
-    vlr_liquido == deputado.despesas.maximum(:vlr_liquido)
-  end
-
-  alias_attribute :is_maior_despesa, :maior?
 end
