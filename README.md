@@ -16,7 +16,7 @@ Este projeto contempla as principais funcionalidades de acordo com requisitos pr
 
 ## Documentação da API
 
-Como dito inicialmente, esta API conta com 3 endpoints, sendo 2 GET e um POST. Acompanhe abaixo para identificar melhor os endpoints.
+Como dito inicialmente, esta API conta com 3 endpoints, sendo 2 GET e 1 POST. Acompanhe abaixo para identificar melhor os endpoints.
 
 #### Retorna todos os deputados 
 
@@ -61,13 +61,13 @@ Ao ser executado com sucesso, é retornado um arquivo JSON, seguindo o formato a
 [
 	{
 		"id": Int,
-		"nome_parlamentar": "String",
-		"ide_cadastro": Int,
-		"dat_emissao": Date,
+		"deputado_id": Int,
+		"dat_emissao": "Date",
 		"txt_fornecedor": "String",
 		"vlr_liquido": Real,
 		"url_documento": "String",
-		"is_maior_despesa": Boolean
+		"ide_cadastro": Int,
+		"nome_parlamentar": "String"
 	}
 ]
 ```
@@ -97,6 +97,15 @@ O arquivo em questão obrigatoriamente deve ser com a extensão .csv; caso seja 
 	"error": "Formato inválido. Apenas arquivos .csv são permitidos."
 }
 ```
+
+Caso não seja enviado nenhum arquivo, será retornado o seguinte JSON:
+
+```bash
+{
+	"error": "Nenhum arquivo enviado"
+}
+```
+
 ## Instalação
 
 Para realizar a instalação do projeto, primeiramente faça o clone deste repositório. Para isso, basta colar o comando abaixo no seu terminal:
@@ -114,7 +123,7 @@ Para a instalação das gems, é necessário acessar o repositório referente ao
     cd ceap-backend
 ```
 
-Após acessar a página, execute o seguinte comando:
+Após acessar a pasta, execute o seguinte comando:
 
 ```bash
     bundle install
@@ -248,7 +257,7 @@ Por se tratar de um projeto que contém uma API no backend e um Front end separa
   - Shoulda-Matchers para complementar RSpec, com seus matcher prontos (```validate_presence_of``` ou até mesmo ```belongs_to```) acelera o processo de testes de validação e associações
 
 **Front-End**
-- React facilitando o gerenciamento de estado e composição via hooks, Vite sendo um build tool moderno, entregando hot-reload ultrarrápidos e bundles otimozados para Produção.
+- React facilitando o gerenciamento de estado e composição via hooks, Vite sendo um build tool moderno, entregando hot-reload ultrarrápidos e bundles otimizados para Produção.
 - React Routes para navegação simples e hooks específicos
 - Axios para simplificação das chamadas à API, mantendo componentes desacoplados
 - CSS Modules para estilização sem frameworks pesados e evitando colisões globais
